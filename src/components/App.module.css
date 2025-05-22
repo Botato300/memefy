@@ -1,0 +1,11 @@
+.title_main {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.title_main span {
+    background-color: var(--color-featured);
+    padding: 0.3rem;
+    border-radius: 10px;
+}

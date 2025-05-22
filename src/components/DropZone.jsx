@@ -1,44 +1,69 @@
-import { useState } from "react";
-
+import { useRef, useEffect } from "react";
 import s from "./DropZone.module.css";
-import Editor from "./Editor.jsx";
 
-export default function DropZone() {
-    const [files, setFiles] = useState([]);
+export default function DropZone({ setFile }) {
+    const elementInput = useRef(null);
+
+    useEffect(() => {
+        document.onpaste = handleEventPaste;
+    }, []);
 
     function handleEventDrop(event) {
         event.preventDefault();
 
-        setFiles([...files, ...event.dataTransfer.files]);
+        const files = event.dataTransfer.files;
+
+        if (!files.length || !files[0].type.startsWith("image/"))
+            return;
+
+        setFile(files[0]);
     }
 
     function handleEventPaste(event) {
-        const data = event.clipboardData;
-        setFiles([...files, ...data.files]);
+        const files = event.clipboardData.files;
+
+        if (!files.length) {
+            console.log("No se encontró una imagen para pegar");
+            return;
+        }
+
+        setFile(files[0]);
     }
 
     function handleEventChange(event) {
-        setFiles([...files, ...event.target.files]);
+        const files = event.target.files;
+
+        if (!files.length || !files[0].type.startsWith("image/"))
+            return;
+
+        setFile(files[0]);
     }
 
     return (
-        <>
-            <div className={s.dropzone}
-                onDrop={handleEventDrop}
-                onDragOver={(event) => event.preventDefault()}
-                onPaste={handleEventPaste}
-            >
-                <input onChange={handleEventChange} type="file" multiple accept="image/*" />
-                <span>―― o ――</span>
-                <span>Puedes arrastrar y soltar los archivos aquí</span>
-                <span>También puedes pegar los archivos aquí</span>
+        <div className={s.dropzone}
+            onDrop={handleEventDrop}
+            onDragOver={(event) => event.preventDefault()}
+            onPaste={handleEventPaste}
+            onClick={() => elementInput.current.click()}
+        >
+            <ImageUploadIcon />
+            <div className={s.text_instruction}>
+                <span>Arrastra y suelta </span> una imagen
+                <br />
+                o <span>haz clic</span> para elegir una
             </div>
 
-            {
-                files.map(file => (
-                    <Editor imgFile={file} key={crypto.randomUUID()} />
-                ))
-            }
-        </>
+            <input onChange={handleEventChange} ref={elementInput} type="file" accept="image/*" />
+
+            <span className={s.tip}><span>Tip:</span> puedes pegar la imagen con <kbd>Ctrl</kbd> + <kbd>V</kbd></span>
+        </div>
+    );
+}
+
+function ImageUploadIcon() {
+    return (
+        <svg className={s.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="150" height="150" fill="#000000">
+            <path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm480-280v-167l-64 63-56-56 160-160 160 160-56 56-64-63v167h-80Z" />
+        </svg>
     );
 }

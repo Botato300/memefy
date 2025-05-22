@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from "react";
-import s from "./Editor.module.css";
 
-export default function Editor({ imgFile }) {
+import s from "./ImageEditor.module.css";
+
+export default function ImageEditor({ imgFile }) {
     const canvasRef = useRef(null);
     const [text, setText] = useState("");
 
@@ -38,7 +39,7 @@ export default function Editor({ imgFile }) {
             ctx.textBaseline = "top";
             ctx.fillText(text.toUpperCase(), canvasWidth / 2, imgY + imgHeight + 10);
         };
-    }, [imgFile, text]);
+    }, [text, imgFile]);
 
     function handleEventChange(event) {
         setText(event.target.value);
@@ -59,6 +60,7 @@ export default function Editor({ imgFile }) {
     return (
         <div className={s.editor}>
             <canvas width="600" height="500" ref={canvasRef}></canvas>
+
             <input
                 onChange={handleEventChange}
                 type="text"

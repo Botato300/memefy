@@ -1,7 +1,30 @@
 @import "normalizer.css";
+@import "fonts.css";
+
+
+:root {
+    --color-text: #333333;
+    --color-featured: #FFB042;
+}
 
 body {
     background-color: hsl(0, 0%, 95%);
+    color: var(--color-text);
+    font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Canva Sans", sans-serif;
+    font-weight: 900;
+}
+
+button {
+    cursor: pointer;
 }
 
 #root {

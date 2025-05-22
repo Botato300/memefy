@@ -5,7 +5,7 @@ export default function Header() {
 
     return (
         <header className={s.header}>
-            <h1>{NAME_APP} - Generador de memes</h1>
+            <a href="/"><h1>{NAME_APP}</h1></a>
         </header>
     );
 }
