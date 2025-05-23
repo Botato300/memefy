@@ -16,17 +16,17 @@ export default function ImageEditor({ imgFile }) {
 
             const canvasWidth = canvas.width;
             const canvasHeight = canvas.height;
-
             const imgWidth = 500;
             const imgHeight = 400;
+
             const imgX = (canvasWidth - imgWidth) / 2;
             const imgY = 20;
 
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "#000000";
             ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-            ctx.fillStyle = "#999";
-            ctx.fillRect(imgX - 2, imgY - 2, imgWidth + 4, imgHeight + 4);
+            ctx.fillStyle = "#303030";
+            ctx.fillRect(imgX, imgY, imgWidth, imgHeight);
 
             ctx.filter = "contrast(100)";
             ctx.drawImage(imageData, imgX, imgY, imgWidth, imgHeight);
@@ -61,16 +61,25 @@ export default function ImageEditor({ imgFile }) {
     }
 
     return (
-        <div className={s.editor}>
-            <canvas width="600" height="500" ref={canvasRef}></canvas>
+        <div className={s.container}>
+            <div className={s.editor}>
+                <canvas width="600" height="500" ref={canvasRef}></canvas>
 
-            <input
-                onChange={handleTextChange}
-                type="text"
-                placeholder="Escribe el texto aquí"
-                value={text}
-            />
-            <button onClick={handleDownloadClick}>Descargar</button>
+                <input
+                    onChange={handleTextChange}
+                    type="text"
+                    placeholder="Escribe el texto aquí"
+                    value={text}
+                />
+                <button className={s.btnDownload} onClick={handleDownloadClick}>
+                    <DownloadIcon />
+                    <span>DESCARGAR</span>
+                </button>
+            </div>
         </div>
     );
+}
+
+function DownloadIcon() {
+    return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" className={s.icon} width="24" height="24" fill="#000000"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" /></svg>;
 }

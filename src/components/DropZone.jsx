@@ -40,22 +40,24 @@ export default function DropZone({ setFile }) {
     }
 
     return (
-        <div className={s.dropzone}
-            onDrop={handleDrop}
-            onDragOver={(event) => event.preventDefault()}
-            onPaste={handlePaste}
-            onClick={() => elementInput.current.click()}
-        >
-            <ImageUploadIcon />
-            <div className={s.text_instruction}>
-                <span>Arrastra y suelta </span> una imagen
-                <br />
-                o <span>haz clic</span> para elegir una
+        <div className={s.container}>
+            <div className={s.dropzone}
+                onDrop={handleDrop}
+                onDragOver={(event) => event.preventDefault()}
+                onPaste={handlePaste}
+                onClick={() => elementInput.current.click()}
+            >
+                <ImageUploadIcon />
+                <div className={s.text_instruction}>
+                    <span>Arrastra y suelta </span> una imagen
+                    <br />
+                    o <span>haz clic</span> para elegir una
+                </div>
+
+                <input onChange={handleFileChange} ref={elementInput} type="file" accept="image/*" />
+
+                <span className={s.tip}><span>Tip:</span> puedes pegar la imagen con <kbd>Ctrl</kbd> + <kbd>V</kbd></span>
             </div>
-
-            <input onChange={handleFileChange} ref={elementInput} type="file" accept="image/*" />
-
-            <span className={s.tip}><span>Tip:</span> puedes pegar la imagen con <kbd>Ctrl</kbd> + <kbd>V</kbd></span>
         </div>
     );
 }

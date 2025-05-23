@@ -1,12 +1,65 @@
+.container {
+    margin-inline: 2rem;
+}
+
 .editor {
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    max-width: 600px;
+    width: 100%;
     margin: 0 auto;
     margin-top: 30px;
 }
 
-.image {
-    max-width: 600px;
-    width: 100%;
+.editor input {
+    font-size: 1.7rem;
+    padding: 0.7rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+    border: 2px dashed #428DFF;
+    background-color: hsl(0, 0%, 97%);
+}
+
+.editor input:focus {
+    background-color: #FFFFFF;
+}
+
+.editor input:focus-visible {
+    outline: none;
+}
+
+.btnDownload {
+    padding: 0.8rem;
+    background-color: var(--color-featured);
+    color: var(--color-text);
+    border-radius: 5px;
+    border: 1px solid var(--color-text);
+    font-weight: 600;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 3px 3px 0 3px var(--color-text);
+}
+
+.btnDownload:hover {
+    position: relative;
+    left: 3px;
+    top: 3px;
+    box-shadow: none;
+}
+
+.btnDownload:active {
+    position: relative;
+    left: 3px;
+    top: 3px;
+    box-shadow: none;
+    background-color: hsl(35 100% 70%);
+}
+
+.icon {
+    width: 2.2rem;
+    height: auto;
+    fill: currentColor;
 }
