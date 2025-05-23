@@ -41,17 +41,20 @@ export default function ImageEditor({ imgFile }) {
         };
     }, [text, imgFile]);
 
-    function handleEventChange(event) {
+    function handleTextChange(event) {
         setText(event.target.value);
     }
 
-    function handleEventClick() {
+    function handleDownloadClick() {
+        const nameWithoutExtension = imgFile.name.substring(0, imgFile.name.lastIndexOf("."));
+        const fileName = nameWithoutExtension + ".png";
+
         const canvas = canvasRef.current;
         const url = canvas.toDataURL("image/png", 0.1);
 
         const link = document.createElement("a");
         link.href = url;
-        link.download = "lol";
+        link.download = fileName;
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -62,12 +65,12 @@ export default function ImageEditor({ imgFile }) {
             <canvas width="600" height="500" ref={canvasRef}></canvas>
 
             <input
-                onChange={handleEventChange}
+                onChange={handleTextChange}
                 type="text"
                 placeholder="Escribe el texto aquí"
                 value={text}
             />
-            <button onClick={handleEventClick}>Descargar</button>
+            <button onClick={handleDownloadClick}>Descargar</button>
         </div>
     );
 }

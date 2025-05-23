@@ -5,10 +5,10 @@ export default function DropZone({ setFile }) {
     const elementInput = useRef(null);
 
     useEffect(() => {
-        document.onpaste = handleEventPaste;
+        document.onpaste = handlePaste;
     }, []);
 
-    function handleEventDrop(event) {
+    function handleDrop(event) {
         event.preventDefault();
 
         const files = event.dataTransfer.files;
@@ -19,7 +19,7 @@ export default function DropZone({ setFile }) {
         setFile(files[0]);
     }
 
-    function handleEventPaste(event) {
+    function handlePaste(event) {
         const files = event.clipboardData.files;
 
         if (!files.length) {
@@ -30,7 +30,7 @@ export default function DropZone({ setFile }) {
         setFile(files[0]);
     }
 
-    function handleEventChange(event) {
+    function handleFileChange(event) {
         const files = event.target.files;
 
         if (!files.length || !files[0].type.startsWith("image/"))
@@ -41,9 +41,9 @@ export default function DropZone({ setFile }) {
 
     return (
         <div className={s.dropzone}
-            onDrop={handleEventDrop}
+            onDrop={handleDrop}
             onDragOver={(event) => event.preventDefault()}
-            onPaste={handleEventPaste}
+            onPaste={handlePaste}
             onClick={() => elementInput.current.click()}
         >
             <ImageUploadIcon />
@@ -53,7 +53,7 @@ export default function DropZone({ setFile }) {
                 o <span>haz clic</span> para elegir una
             </div>
 
-            <input onChange={handleEventChange} ref={elementInput} type="file" accept="image/*" />
+            <input onChange={handleFileChange} ref={elementInput} type="file" accept="image/*" />
 
             <span className={s.tip}><span>Tip:</span> puedes pegar la imagen con <kbd>Ctrl</kbd> + <kbd>V</kbd></span>
         </div>
