@@ -1,7 +1,25 @@
-.footer {
+.footer small {
+    font-size: 95%;
+    flex-grow: 1;
     text-align: center;
-    font-size: 1.2rem;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 1rem;
     padding: 2rem;
     font-style: italic;
     color: rgb(73, 73, 73);
+}
+
+.footer a {
+    color: #065a82;
+}
+
+.repo {
+    color: #24292f;
 }
