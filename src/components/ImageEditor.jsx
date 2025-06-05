@@ -1,18 +1,21 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 
 import s from "./ImageEditor.module.css";
 
 export default function ImageEditor({ imgFile }) {
     const canvasRef = useRef(null);
+
     const [text, setText] = useState("");
+
+    const imageURL = useMemo(() => URL.createObjectURL(imgFile), [imgFile]);
 
     useEffect(() => {
         const imageData = new Image();
-        imageData.src = URL.createObjectURL(imgFile);
+        imageData.src = imageURL;
 
         imageData.onload = () => {
             const canvas = canvasRef.current;
-            const ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext("2d", { alpha: false });
 
             const canvasWidth = canvas.width;
             const canvasHeight = canvas.height;
@@ -30,7 +33,6 @@ export default function ImageEditor({ imgFile }) {
 
             ctx.filter = "contrast(100)";
             ctx.drawImage(imageData, imgX, imgY, imgWidth, imgHeight);
-
 
             ctx.filter = "none";
             ctx.font = "400 32px Impact";
@@ -50,7 +52,7 @@ export default function ImageEditor({ imgFile }) {
         const fileName = nameWithoutExtension + ".png";
 
         const canvas = canvasRef.current;
-        const url = canvas.toDataURL("image/png", 0.1);
+        const url = canvas.toDataURL("image/png");
 
         const link = document.createElement("a");
         link.href = url;
