@@ -19,11 +19,17 @@
     }
 }
 
+.hero_container {
+    max-width: max-content;
+    margin: 0 auto;
+    padding-inline: 2rem;
+}
+
 .title_main {
     font-size: 2.5rem;
     font-weight: 800;
     text-align: center;
-    margin-top: 0;
+    margin: 0;
 }
 
 .title_main span {

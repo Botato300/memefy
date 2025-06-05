@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext } from "react";
+
+import { FileContext } from "../context/FileContext.jsx";
 
 import DropZone from "./DropZone.jsx";
 import ImageEditor from "./ImageEditor.jsx";
@@ -6,7 +8,7 @@ import ImageEditor from "./ImageEditor.jsx";
 import s from "./ImageManager.module.css";
 
 export default function ImageManager() {
-    const [file, setFile] = useState(null);
+    const { file, setFile } = useContext(FileContext);
 
     if (file)
         return (

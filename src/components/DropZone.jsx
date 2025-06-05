@@ -1,4 +1,7 @@
 import { useRef, useEffect } from "react";
+
+import { increaseMemeCount } from "../api/memes.js";
+
 import s from "./DropZone.module.css";
 
 export default function DropZone({ setFile }) {
@@ -13,8 +16,10 @@ export default function DropZone({ setFile }) {
 
         const files = event.dataTransfer.files;
 
-        if (!files.length || !files[0].type.startsWith("image/"))
+        if (!isValidImage(files))
             return;
+
+        increaseMemeCount();
 
         setFile(files[0]);
     }
@@ -22,10 +27,16 @@ export default function DropZone({ setFile }) {
     function handlePaste(event) {
         const files = event.clipboardData.files;
 
+
         if (!files.length) {
             console.log("No se encontró una imagen para pegar");
             return;
         }
+
+        if (!isValidImage(files))
+            return;
+
+        increaseMemeCount();
 
         setFile(files[0]);
     }
@@ -33,8 +44,10 @@ export default function DropZone({ setFile }) {
     function handleFileChange(event) {
         const files = event.target.files;
 
-        if (!files.length || !files[0].type.startsWith("image/"))
+        if (!isValidImage(files))
             return;
+
+        increaseMemeCount();
 
         setFile(files[0]);
     }
@@ -44,7 +57,6 @@ export default function DropZone({ setFile }) {
             <div className={s.dropzone}
                 onDrop={handleDrop}
                 onDragOver={(event) => event.preventDefault()}
-                onPaste={handlePaste}
                 onClick={() => elementInput.current.click()}
             >
                 <ImageUploadIcon />
@@ -68,4 +80,11 @@ function ImageUploadIcon() {
             <path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm480-280v-167l-64 63-56-56 160-160 160 160-56 56-64-63v167h-80Z" />
         </svg>
     );
+}
+
+function isValidImage(files) {
+    if (!files.length || !files[0].type.startsWith("image/"))
+        return false;
+
+    return true;
 }

@@ -1,16 +1,34 @@
 {
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "memefy",
-    "main": "src/worker/index.js",
+    "main": "src/backend/index.js",
     "compatibility_date": "2025-05-25",
     "routes": [
         {
-            "pattern": "memefy.tomasbottari.com",
+            "pattern": "memefy.tomasbottari.com", // OPTIONAL: Replace it with your custom domain
             "custom_domain": true
         }
     ],
     "assets": {
         "not_found_handling": "single-page-application"
+    },
+    "env": {
+        "prod": {
+            "kv_namespaces": [
+                {
+                    "binding": "MEMEFY_DB", // OPTIONAL: Replace it with the name of your Cloudflare KV database
+                    "id": "d5eba45f31b7444a97e8230cdfec6761" // OPTIONAL: Replace it with the ID of your Cloudflare KV database
+                }
+            ]
+        },
+        "dev": {
+            "kv_namespaces": [
+                {
+                    "binding": "MEMEFY_DB", // OPTIONAL: Replace it with the name of your Cloudflare KV database
+                    "id": "36632fc76fef4c43a6115298968b0c75" // OPTIONAL: Replace it with the ID of your Cloudflare KV database
+                }
+            ]
+        }
     },
     "observability": {
         "enabled": true
