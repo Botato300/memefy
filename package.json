@@ -1,14 +1,17 @@
 {
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "(vite|pnpm dev:backend)",
+        "dev:backend": "node --watch --env-file=./src/backend/.env ./src/backend/main.js",
+        "prod:backend": "node --env-file=./src/backend/.env ./src/backend/main.js",
         "build": "vite build",
-        "lint": "eslint .",
-        "preview": "npm run build && vite preview"
+        "preview": "npm run build && (vite preview|pnpm prod:backend)",
+        "lint": "eslint ."
     },
     "dependencies": {
         "express": "^5.1.0",
         "konva": "^9.3.20",
+        "lowdb": "^7.0.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-konva": "^19.0.5"
