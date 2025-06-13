@@ -10,7 +10,7 @@ export async function getMemeCount() {
         return content.memeCount;
     } catch (error) {
         console.error(`An error occurred while obtaining the meme count in the API:\n${error}`);
-        throw new error;
+        throw error;
     }
 }
 
