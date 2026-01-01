@@ -1,12 +1,14 @@
 import s from "./Footer.module.css";
 
-export default function Footer() {
-    const MY_WEB = "https://tomasbottari.com/";
-    const REPO_URL = "https://github.com/Botato300/memefy/";
+const MY_WEB = "https://tomasbottari.com/";
+const REPO_URL = "https://github.com/Botato300/memefy/";
 
+const date = new Date();
+
+export default function Footer() {
     return (
         <footer className={s.footer}>
-            <small className={s.credits}>Hecho por <a href={MY_WEB} target="_blank">Tomás Bottari</a> - 2025</small>
+            <small className={s.credits}>Hecho por <a href={MY_WEB} target="_blank">Tomás Bottari</a> - {date.getUTCFullYear()}</small>
             <a className={s.repo} href={REPO_URL} target="_blank"><GithubIcon size="24" /> Github</a>
         </footer>
     );
