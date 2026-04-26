@@ -1,2 +1,2 @@
 # MEMEFY
-Aplicación web para hacer memes boludos en cuestión de segundos xd
+Aplicación web para hacer memes boludos en cuestión de segundos :trollface:
