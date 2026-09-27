@@ -14,14 +14,14 @@ export default function ImageManager() {
         return (
             <>
                 <ImageEditor imgFile={file} />
-                <span className={s.title}>Escríbele un texto y ya lo tienes...</span>
+                <span className={s.title}>Add some text and you're done...</span>
             </>
         );
 
     return (
         <>
             <DropZone setFile={setFile} />
-            <span className={s.title}>Elige una imagen para memeficar</span>
+            <span className={s.title}>Choose an image to memeify</span>
         </>
     );
 }

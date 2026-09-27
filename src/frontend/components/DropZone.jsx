@@ -29,7 +29,7 @@ export default function DropZone({ setFile }) {
 
 
         if (!files.length) {
-            console.log("No se encontró una imagen para pegar");
+            console.log("No image found to paste");
             return;
         }
 
@@ -61,14 +61,14 @@ export default function DropZone({ setFile }) {
             >
                 <ImageUploadIcon />
                 <div className={s.text_instruction}>
-                    <span>Arrastra y suelta </span> una imagen
+                    <span>Drag and drop</span> an image
                     <br />
-                    o <span>haz clic</span> para elegir una
+                    or <span>click</span> to choose one
                 </div>
 
                 <input onChange={handleFileChange} ref={elementInput} type="file" accept="image/*" />
 
-                <span className={s.tip}><span>Tip:</span> puedes pegar la imagen con <kbd>Ctrl</kbd> + <kbd>V</kbd></span>
+                <span className={s.tip}><span>Tip:</span> you can paste the image with <kbd>Ctrl</kbd> + <kbd>V</kbd></span>
             </div>
         </div>
     );

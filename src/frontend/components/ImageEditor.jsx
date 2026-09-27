@@ -70,12 +70,12 @@ export default function ImageEditor({ imgFile }) {
                 <input
                     onChange={handleTextChange}
                     type="text"
-                    placeholder="Escribe el texto aquí"
+                    placeholder="Type the text here"
                     value={text}
                 />
                 <button className={s.btnDownload} onClick={handleDownloadClick}>
                     <DownloadIcon />
-                    <span>DESCARGAR</span>
+                    <span>DOWNLOAD</span>
                 </button>
             </div>
         </div>

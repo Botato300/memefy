@@ -27,5 +27,5 @@ export default function MemeCount() {
         setCount(count + 1);
     }, [file]);
 
-    return count === null ? null : <span className={`${s.text_count} ${isSuccess ? s.show : ""}`}>Total de memes creados: {count}</span>;
+    return count === null ? null : <span className={`${s.text_count} ${isSuccess ? s.show : ""}`}>Total memes created: {count}</span>;
 }

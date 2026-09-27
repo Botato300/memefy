@@ -18,7 +18,7 @@ export default function App() {
 			<main>
 				<FileProvider>
 					<div className={s.hero_container}>
-						<h2 className={s.title_main}>Crea un <span>meme</span> en cuestión de segundos</h2>
+						<h2 className={s.title_main}>Create a <span>meme</span> in seconds</h2>
 						<MemeCount />
 					</div>
 

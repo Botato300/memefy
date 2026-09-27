@@ -8,7 +8,7 @@ const date = new Date();
 export default function Footer() {
     return (
         <footer className={s.footer}>
-            <small className={s.credits}>Hecho por <a href={MY_WEB} target="_blank">Tomás Bottari</a> - {date.getUTCFullYear()}</small>
+            <small className={s.credits}>Made by <a href={MY_WEB} target="_blank">Tomás Bottari</a> - {date.getUTCFullYear()}</small>
             <a className={s.repo} href={REPO_URL} target="_blank"><GithubIcon size="24" /> Github</a>
         </footer>
     );
