@@ -48,8 +48,9 @@ export default function ImageEditor({ imgFile }) {
     }
 
     function handleDownloadClick() {
+        console.log(imgFile.name);
         const nameWithoutExtension = imgFile.name.substring(0, imgFile.name.lastIndexOf("."));
-        const fileName = nameWithoutExtension + ".png";
+        const fileName = `${nameWithoutExtension}-memefy.png`;
 
         const canvas = canvasRef.current;
         const url = canvas.toDataURL("image/png");
