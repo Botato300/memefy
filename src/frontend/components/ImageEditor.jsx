@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import s from "./ImageEditor.module.css";
 
@@ -6,42 +6,55 @@ export default function ImageEditor({ imgFile }) {
     const canvasRef = useRef(null);
 
     const [text, setText] = useState("");
-
-    const imageURL = useMemo(() => URL.createObjectURL(imgFile), [imgFile]);
+    const [loadedImage, setLoadedImage] = useState(null);
 
     useEffect(() => {
+        const imageURL = URL.createObjectURL(imgFile);
         const imageData = new Image();
-        imageData.src = imageURL;
 
         imageData.onload = () => {
-            const canvas = canvasRef.current;
-            const ctx = canvas.getContext("2d", { alpha: false });
-
-            const canvasWidth = canvas.width;
-            const canvasHeight = canvas.height;
-            const imgWidth = 500;
-            const imgHeight = 400;
-
-            const imgX = (canvasWidth - imgWidth) / 2;
-            const imgY = 20;
-
-            ctx.fillStyle = "#000000";
-            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-            ctx.fillStyle = "#303030";
-            ctx.fillRect(imgX, imgY, imgWidth, imgHeight);
-
-            ctx.filter = "contrast(100)";
-            ctx.drawImage(imageData, imgX, imgY, imgWidth, imgHeight);
-
-            ctx.filter = "none";
-            ctx.font = "400 32px Impact";
-            ctx.fillStyle = "white";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "top";
-            ctx.fillText(text.toUpperCase(), canvasWidth / 2, imgY + imgHeight + 10);
+            setLoadedImage({ file: imgFile, image: imageData });
         };
-    }, [text, imgFile]);
+
+        imageData.src = imageURL;
+
+        return () => {
+            imageData.onload = null;
+            imageData.removeAttribute("src");
+            URL.revokeObjectURL(imageURL);
+        };
+    }, [imgFile]);
+
+    useEffect(() => {
+        if (loadedImage?.file !== imgFile) return;
+
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d", { alpha: false });
+
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const imgWidth = 500;
+        const imgHeight = 400;
+
+        const imgX = (canvasWidth - imgWidth) / 2;
+        const imgY = 20;
+
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+        ctx.fillStyle = "#303030";
+        ctx.fillRect(imgX, imgY, imgWidth, imgHeight);
+
+        ctx.filter = "contrast(100)";
+        ctx.drawImage(loadedImage.image, imgX, imgY, imgWidth, imgHeight);
+
+        ctx.filter = "none";
+        ctx.font = "400 32px Impact";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillText(text.toUpperCase(), canvasWidth / 2, imgY + imgHeight + 10);
+    }, [text, loadedImage, imgFile]);
 
     function handleTextChange(event) {
         setText(event.target.value);
