@@ -17,6 +17,10 @@
     cursor: pointer;
 }
 
+.dropzone:focus-visible {
+    outline: solid;
+}
+
 .icon {
     fill: currentColor;
     width: 10rem;

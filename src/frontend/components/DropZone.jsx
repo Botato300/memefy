@@ -52,12 +52,22 @@ export default function DropZone({ setFile }) {
         setFile(files[0]);
     }
 
+    function handleKeyDown(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            elementInput.current.click();
+        }
+    }
+
     return (
         <div className={s.container}>
             <div className={s.dropzone}
                 onDrop={handleDrop}
                 onDragOver={(event) => event.preventDefault()}
                 onClick={() => elementInput.current.click()}
+                onKeyDown={handleKeyDown}
+                role="button"
+                tabIndex={0}
             >
                 <ImageUploadIcon />
                 <div className={s.text_instruction}>
@@ -66,7 +76,7 @@ export default function DropZone({ setFile }) {
                     or <span>click</span> to choose one
                 </div>
 
-                <input onChange={handleFileChange} ref={elementInput} type="file" accept="image/*" />
+                <input onChange={handleFileChange} ref={elementInput} tabIndex={-1} type="file" accept="image/*" />
 
                 <span className={s.tip}><span>Tip:</span> you can paste the image with <kbd>Ctrl</kbd> + <kbd>V</kbd></span>
             </div>

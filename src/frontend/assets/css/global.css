@@ -7,6 +7,12 @@
     --color-featured: #FFB042;
 }
 
+:focus-visible {
+    outline: 3px dashed #333333;
+    outline-offset: 3px;
+    box-shadow: none;
+}
+
 body {
     background-color: hsl(0, 0%, 95%);
     color: var(--color-text);
