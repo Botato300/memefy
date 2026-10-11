@@ -1,7 +1,7 @@
 {
     "type": "module",
     "scripts": {
-        "dev": "(vite|pnpm dev:backend)",
+        "dev": "concurrently \"pnpm dev:backend\" \"vite\" -n \"server,frontend\" -c \"magenta,green\"",
         "dev:backend": "node --watch --env-file=./src/backend/.env ./src/backend/main.js",
         "prod:backend": "node --env-file=./src/backend/.env ./src/backend/main.js",
         "build": "vite build",
