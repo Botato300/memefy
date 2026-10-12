@@ -1,20 +1,15 @@
-.container {
-    margin-inline: 2rem;
-}
-
 .editor {
     display: flex;
     flex-direction: column;
     max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 30px;
+    width: calc(100% - 4rem);
+    margin: 30px auto 0;
 }
 
 .editor input {
     font-size: 1.7rem;
     padding: 0.7rem;
-    margin: 1rem 0;
+    margin: 0.35rem 0 0;
     border-radius: 5px;
     border: 2px dashed var(--color-text);
     background-color: hsl(0, 0%, 97%);
@@ -25,7 +20,9 @@
 }
 
 .editor input:focus-visible {
-    outline: none;
+    border: 2px dashed transparent;
+    outline: 4px dashed #222222;
+    outline-offset: 0;
 }
 
 .btnDownload {
@@ -62,4 +59,56 @@
     width: 2.2rem;
     height: auto;
     fill: currentColor;
+}
+
+.viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: rgb(0, 0, 0);
+}
+
+.preview {
+    transform-origin: top left;
+    pointer-events: none;
+    user-select: none;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.btnDownload:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.contextMenu {
+    position: absolute;
+    inset: auto;
+    margin: 0;
+    padding: 6px;
+    max-width: calc(100vw - 16px);
+    border: 1px solid var(--color-text);
+    border-radius: 5px;
+    background: white;
+    color: var(--color-text);
+    box-shadow: 3px 3px 0 var(--color-text);
+}
+
+.contextMenu button {
+    padding: 0.7rem 1rem;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.contextMenu button:hover,
+.contextMenu button:focus-visible {
+    background: var(--color-featured);
 }

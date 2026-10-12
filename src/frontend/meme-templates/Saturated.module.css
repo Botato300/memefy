@@ -1,0 +1,26 @@
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 20px 50px;
+    background: black;
+    color: white;
+    overflow: hidden;
+}
+
+.image {
+    display: block;
+    width: 500px;
+    height: 400px;
+    object-fit: fill;
+    filter: contrast(100);
+    background: #303030;
+}
+
+.text {
+    margin: 10px -50px 0;
+    font-size: 32px;
+    font-family: Impact, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
