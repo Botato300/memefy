@@ -5,7 +5,10 @@ export default function Header() {
 
     return (
         <header className={s.header}>
-            <a href="/"><h1>{NAME_APP}</h1></a>
+            <a href="/">
+                <img src="/logo.webp" alt={`${NAME_APP} logo`} className={s.logo} />
+                <h1>{NAME_APP}</h1>
+            </a>
         </header>
     );
 }
