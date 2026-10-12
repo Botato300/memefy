@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { toBlob } from "html-to-image";
+import { snapdom } from "@zumer/snapdom";
 
 import { memeTemplates } from "../meme-templates";
 import Notification from "./Notification.jsx";
@@ -69,15 +69,12 @@ export default function ImageEditor({ imgFile }) {
     async function generateImage() {
         const node = previewRef.current;
 
-        const blob = await toBlob(node, {
+        const blob = await snapdom.toBlob(node, {
             width: currentTemplate.width,
             height: currentTemplate.height,
-            pixelRatio: 1,
             style: { transform: "none" },
+            format: "png"
         });
-
-        if (!blob)
-            throw new Error("Could not generate PNG");
 
         return blob;
     }
@@ -96,7 +93,7 @@ export default function ImageEditor({ imgFile }) {
             if (action === "copy") {
                 await navigator.clipboard.write([new ClipboardItem({ "image/png": generateImage() })]);
 
-                setNotification("Image copied.");
+                setNotification("Image copied");
             } else {
                 const url = URL.createObjectURL(await generateImage());
                 const link = document.createElement("a");
@@ -111,7 +108,7 @@ export default function ImageEditor({ imgFile }) {
 
                 URL.revokeObjectURL(url);
 
-                setNotification("Image downloaded.");
+                setNotification("Image downloaded");
             }
         } catch (error) {
             console.error("Could not export meme: ", error);

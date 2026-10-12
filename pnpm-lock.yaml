@@ -8,12 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@zumer/snapdom':
+        specifier: ^3.3.0
+        version: 3.3.0
       express:
         specifier: ^5.1.0
         version: 5.1.0
-      html-to-image:
-        specifier: ^1.11.13
-        version: 1.11.13
       lowdb:
         specifier: ^7.0.1
         version: 7.0.1
@@ -515,6 +515,9 @@ packages:
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0-beta.0
 
+  '@zumer/snapdom@3.3.0':
+    resolution: {integrity: sha512-DR4HnXp5vlLDymmAE5z/QWzxtsc+wrpjo/QXvj5R377wKarwpCQO2LzUuQjWhJaMDNAyCjvxJB4EN8Zgs8Ri9w==}
+
   accepts@2.0.0:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
     engines: {node: '>= 0.6'}
@@ -859,9 +862,6 @@ packages:
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
-
-  html-to-image@1.11.13:
-    resolution: {integrity: sha512-cuOPoI7WApyhBElTTb9oqsawRvZ0rHhaHwghRLlTuffoD1B2aDemlCruLeZrUIIdvG7gs9xeELEPm6PhuASqrg==}
 
   http-errors@2.0.0:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
@@ -1677,6 +1677,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@zumer/snapdom@3.3.0': {}
+
   accepts@2.0.0:
     dependencies:
       mime-types: 3.0.1
@@ -2061,8 +2063,6 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
-
-  html-to-image@1.11.13: {}
 
   http-errors@2.0.0:
     dependencies:

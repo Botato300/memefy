@@ -1,7 +1,7 @@
 import s from "./Footer.module.css";
 
 const MY_WEB = "https://tomasbottari.com/";
-const REPO_URL = "https://github.com/Botato300/memefy/";
+const REPO_URL = "https://github.com/Botato300/memefy";
 
 const date = new Date();
 
