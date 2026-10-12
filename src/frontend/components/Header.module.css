@@ -12,6 +12,6 @@
 }
 
 .logo {
-    width: 3rem;
-    height: 3rem;
+    max-width: 128px;
+    max-height: 50px;
 }

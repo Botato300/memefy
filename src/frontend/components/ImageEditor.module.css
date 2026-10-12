@@ -89,17 +89,17 @@
     position: absolute;
     inset: auto;
     margin: 0;
-    padding: 6px;
+    padding: 0;
     max-width: calc(100vw - 16px);
     border: 1px solid var(--color-text);
     border-radius: 5px;
-    background: white;
+    background-color: #FFFFFF;
     color: var(--color-text);
     box-shadow: 3px 3px 0 var(--color-text);
 }
 
 .contextMenu button {
-    padding: 0.7rem 1rem;
+    padding: 0.8rem 1rem;
     border: 0;
     border-radius: 3px;
     background: transparent;
@@ -110,5 +110,5 @@
 
 .contextMenu button:hover,
 .contextMenu button:focus-visible {
-    background: var(--color-featured);
+    background: #d3d3d3;
 }
