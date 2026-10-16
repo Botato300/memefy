@@ -8,6 +8,9 @@
         "preview": "npm run build && (vite preview|pnpm prod:backend)",
         "lint": "eslint ."
     },
+    "engines": {
+        "node": ">=22"
+    },
     "dependencies": {
         "@zumer/snapdom": "^3.3.0",
         "express": "^5.1.0",
