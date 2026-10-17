@@ -7,25 +7,28 @@ import { getMemeCount } from "../api/memes.js";
 import s from "./MemeCount.module.css";
 
 export default function MemeCount() {
-    const [count, setCount] = useState(0);
-    const [isSuccess, setIsSuccess] = useState(false);
+    const [count, setCount] = useState(null);
 
     const { file } = useContext(FileContext);
 
     useEffect(() => {
-        getMemeCount()
-            .then(count => {
-                setCount(count);
-                setIsSuccess(true);
-            })
-            .catch(() => setCount(null));
+        if (navigator.onLine) {
+            getMemeCount()
+                .then(setCount)
+                .catch(() => setCount(null));
+        }
     }, []);
 
     useEffect(() => {
-        if (!file) return;
+        if (!file)
+            return;
 
-        setCount(count + 1);
+        setCount(count => count === null ? null : count + 1);
     }, [file]);
 
-    return count === null ? null : <span className={`${s.text_count} ${isSuccess ? s.show : ""}`}>Total memes created: {count}</span>;
+    return (
+        <span className={`${s.text_count} ${count !== null ? s.show : ""}`}>
+            Total memes created: {count ?? 0}
+        </span>
+    );
 }

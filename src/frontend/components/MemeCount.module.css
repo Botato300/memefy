@@ -2,10 +2,13 @@
     text-align: right;
     display: block;
     font-size: 1.4rem;
-    opacity: 0%;
+    /* it's preferable to use "visibility" to avoid CLS */
+    visibility: hidden;
+    opacity: 0;
     transition: opacity 300ms;
 }
 
 .show {
-    opacity: 100%;
+    visibility: visible;
+    opacity: 1;
 }
